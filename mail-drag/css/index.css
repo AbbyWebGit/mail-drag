@@ -1,0 +1,41 @@
+body,
+html {
+  height: 100%;
+  font-family: "Microsoft YaHei";
+}
+.clearfix:after {
+  content: "";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
+.wrap {
+  border: 1px solid #555;
+  padding: 15px 0;
+}
+.mail-btn {
+  height: 45px;
+  padding-left: 15px;
+  border-bottom: 1px solid #e0e9f0;
+}
+.mail-list li {
+  position: relative;
+  padding-left: 40px;
+  height: 66px;
+  border-bottom: 1px solid #e0e9f0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.mail-list li .select-btn {
+  position: absolute;
+  top: 20px;
+  left: 15px;
+}
+.mail-list li .mail-content {
+  padding-top: 16px;
+}
+.mail-list li .mail-content .right {
+  float: right;
+  margin-right: 15px;
+}
