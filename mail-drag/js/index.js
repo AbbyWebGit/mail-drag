@@ -32,7 +32,7 @@ $(function() {
 
     function dataIndex() {
         var len = list.length;
-        console.log(len)
+        // console.log(len)
         var liHtml = "";
         for (i = 0; i < len; i++) {
             liHtml += '<li data-id="' + list[i].id + '"><input class="select-btn" type="checkbox"><div class="mail-content"><span>' + list[i].caption + '</span><span class="right">' + list[i].time + '</span></div><p>' + list[i].desc + '</p></li>'
@@ -69,15 +69,32 @@ $(function() {
         } else {
             n--;
         };
-        //console.log(n);
+        console.log(n);
         if (n == len) {
             console.log(len);
             $("#all-select").prop("checked", true);
         } else {
             $("#all-select").prop("checked", false);
         };
-    })
-    $("#delete").on('click', function() {
+    });
+    
 
-    })
+    $("#delete").on('click', function() {
+        for (i = 0; i < len; i++) {
+            var checkedId = $("#dataList li").eq(i).find("input").prop("checked");
+            if (checkedId == true) {
+                list.splice(i, 1);
+                //var deleteId = $("#dataList li").eq(i).attr("data-id");             
+                // for (j = 0; j < len;j++) {
+                //     console.log(list[2].id)
+                //     if (list[j].id == deleteId) {
+                //     };
+
+                // }
+
+            };
+        }
+        dataIndex();
+
+    });
 })
