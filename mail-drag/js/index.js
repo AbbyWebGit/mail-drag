@@ -43,17 +43,41 @@ $(function() {
     }
 
     dataIndex();
+
+    //全选按钮
+    var len = $("#dataList li").length;
     $("#all-select").on('click', function() {
-        var len = $("#dataList li").length;
-        var aa=$(this).attr("checked")==true;
-        console.log(aa)
-        if ($(this).attr("checked") == false) {
-            console.log(11)
+
+
+        if ($(this).prop("checked") == true) {
             for (i = 0; i < len; i++) {
-                $("#dataList li").eq(i).find("input").attr("checked", "checked");
+                $("#dataList li").eq(i).find("input").prop("checked", true);
+            }
+        } else {
+            for (i = 0; i < len; i++) {
+                $("#dataList li").eq(i).find("input").prop("checked", false);
             }
         }
 
     });
+    //单选计数判断全选部分
+    var n = 0;
+    $("#dataList li input").on('change', function() {
 
+        if ($(this).prop("checked") == true) {
+            n++;
+        } else {
+            n--;
+        };
+        //console.log(n);
+        if (n == len) {
+            console.log(len);
+            $("#all-select").prop("checked", true);
+        } else {
+            $("#all-select").prop("checked", false);
+        };
+    })
+    $("#delete").on('click', function() {
+
+    })
 })
