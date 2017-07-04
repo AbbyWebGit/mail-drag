@@ -52,36 +52,36 @@ $(function() {
         if ($(this).prop("checked") == true) {
             for (var i = 0; i < len; i++) {
                 $("#dataList li").eq(i).find("input").prop("checked", true);
-                n++;
             }
+            n = len;
         } else {
             for (var i = 0; i < len; i++) {
                 $("#dataList li").eq(i).find("input").prop("checked", false);
-                n--;
             }
+            n = 0;
         }
-
+        // console.log(n);
     });
     //单选计数判断全选部分
 
-    $("#dataList li input").on('change', function() {
+    $("#dataList ").on('change', 'li input', function() {
         var len = $("#dataList li").length;
-        console.log(len);
+        console.log(n);
         if ($(this).prop("checked") == true) {
             n++;
         } else {
             n--;
         };
-        console.log(n);
+        // console.log(n);
         if (n == len) {
-            console.log(len);
+            //console.log(len);
             $("#all-select").prop("checked", true);
         } else {
             $("#all-select").prop("checked", false);
         };
     });
 
-    //删除按钮
+    //删除按钮 数组方案
     $("#delete").on('click', function() {
         var len = $("#dataList li").length;
         var newArry = [];
@@ -89,17 +89,6 @@ $(function() {
             var checkedId = $("#dataList li").eq(i).find("input").prop("checked");
             if (checkedId == false) {
                 newArry.push(list[i]);
-
-                // list.splice(i, 1);
-                // var deleteId = $("#dataList li").eq(i).attr("data-id");             
-                // for (var j = 0; j < list.length;j++) {
-                //    //console.log(list[2].id)
-                //     if (list[j].id == deleteId) {
-                //         list.splice(j, 1);
-                //     };
-
-                // }
-
             };
 
         }
@@ -115,15 +104,13 @@ $(function() {
 
 
 
-    // //删除按钮
+    //删除按钮  通过id找数组里面的值方案
     // $("#delete").on('click', function() {
+    //     var len = $("#dataList li").length;
     //     var newArry = [];
     //     for (var i = 0; i < len; i++) {
     //         var checkedId = $("#dataList li").eq(i).find("input").prop("checked");
     //         if (checkedId == true) {
-    //             //newArry.push(list[i]);
-
-    //             // list.splice(i, 1);
     //             var deleteId = $("#dataList li").eq(i).attr("data-id");
     //             for (var j = 0; j < list.length; j++) {
     //                 //console.log(list[2].id)
@@ -136,8 +123,6 @@ $(function() {
     //         };
 
     //     }
-    //     // list = newArry;
-
 
     //     dataIndex();
 
