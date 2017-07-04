@@ -34,7 +34,7 @@ $(function() {
         var len = list.length;
         // console.log(len)
         var liHtml = "";
-        for (i = 0; i < len; i++) {
+        for (var i = 0; i < len; i++) {
             liHtml += '<li data-id="' + list[i].id + '"><input class="select-btn" type="checkbox"><div class="mail-content"><span>' + list[i].caption + '</span><span class="right">' + list[i].time + '</span></div><p>' + list[i].desc + '</p></li>'
 
         }
@@ -45,25 +45,28 @@ $(function() {
     dataIndex();
 
     //全选按钮
-    var len = $("#dataList li").length;
+    var n = 0;
     $("#all-select").on('click', function() {
-
+        var len = $("#dataList li").length;
 
         if ($(this).prop("checked") == true) {
-            for (i = 0; i < len; i++) {
+            for (var i = 0; i < len; i++) {
                 $("#dataList li").eq(i).find("input").prop("checked", true);
+                n++;
             }
         } else {
-            for (i = 0; i < len; i++) {
+            for (var i = 0; i < len; i++) {
                 $("#dataList li").eq(i).find("input").prop("checked", false);
+                n--;
             }
         }
 
     });
     //单选计数判断全选部分
-    var n = 0;
-    $("#dataList li input").on('change', function() {
 
+    $("#dataList li input").on('change', function() {
+        var len = $("#dataList li").length;
+        console.log(len);
         if ($(this).prop("checked") == true) {
             n++;
         } else {
@@ -77,24 +80,66 @@ $(function() {
             $("#all-select").prop("checked", false);
         };
     });
-    
 
+    //删除按钮
     $("#delete").on('click', function() {
-        for (i = 0; i < len; i++) {
+        var len = $("#dataList li").length;
+        var newArry = [];
+        for (var i = 0; i < len; i++) {
             var checkedId = $("#dataList li").eq(i).find("input").prop("checked");
-            if (checkedId == true) {
-                list.splice(i, 1);
-                //var deleteId = $("#dataList li").eq(i).attr("data-id");             
-                // for (j = 0; j < len;j++) {
-                //     console.log(list[2].id)
+            if (checkedId == false) {
+                newArry.push(list[i]);
+
+                // list.splice(i, 1);
+                // var deleteId = $("#dataList li").eq(i).attr("data-id");             
+                // for (var j = 0; j < list.length;j++) {
+                //    //console.log(list[2].id)
                 //     if (list[j].id == deleteId) {
+                //         list.splice(j, 1);
                 //     };
 
                 // }
 
             };
+
         }
+        list = newArry;
+
+
         dataIndex();
 
     });
+
+
+
+
+
+
+    // //删除按钮
+    // $("#delete").on('click', function() {
+    //     var newArry = [];
+    //     for (var i = 0; i < len; i++) {
+    //         var checkedId = $("#dataList li").eq(i).find("input").prop("checked");
+    //         if (checkedId == true) {
+    //             //newArry.push(list[i]);
+
+    //             // list.splice(i, 1);
+    //             var deleteId = $("#dataList li").eq(i).attr("data-id");
+    //             for (var j = 0; j < list.length; j++) {
+    //                 //console.log(list[2].id)
+    //                 if (list[j].id == deleteId) {
+    //                     list.splice(j, 1);
+    //                 };
+
+    //             }
+
+    //         };
+
+    //     }
+    //     // list = newArry;
+
+
+    //     dataIndex();
+
+    // });
 })
