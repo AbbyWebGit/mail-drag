@@ -79,6 +79,11 @@ $(function() {
         } else {
             $("#all-select").prop("checked", false);
         };
+        //阻止冒泡事件
+        $("#dataList li input").mousedown(function(e) {
+            // e.stopPropagation();
+
+        })
     });
 
     //删除按钮 数组方案
@@ -127,4 +132,47 @@ $(function() {
     //     dataIndex();
 
     // });
+
+
+
+    $("#dataList").on("mousedown", "li", function(e) {
+        var X = e.clientX + 10;
+        //console.log(e.clientX);
+        // console.log(X);
+        var Y = e.clientY + 10;
+        if ($(this).find("input").prop("checked") == false) {
+            return;
+        };
+        $("#mes").css({
+            "display": "block",
+            "position": "absolute",
+            "left": X,
+            "top": Y
+        });
+
+        $(document).mousemove(function(e) {
+            var moveX = e.clientX + 10;
+            var moveY = e.clientY + 10;
+
+            $("#mes").css({
+
+                "left": moveX,
+                "top": moveY
+            });
+            //取消默认选中行为
+            e.preventDefault();
+
+        });
+        $(document).mouseup(function(e) {
+            $("#mes").css({
+                "display": "none",
+
+            });
+
+        })
+
+
+
+    })
+
 })

@@ -13,6 +13,7 @@ html {
 .wrap {
   border: 1px solid #555;
   padding: 15px 0;
+  margin-right: 258px;
 }
 .mail-btn {
   height: 45px;
@@ -38,4 +39,26 @@ html {
 .mail-list li .mail-content .right {
   float: right;
   margin-right: 15px;
+}
+.garbage {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border: 1px solid #e0e9f0;
+  width: 256px;
+  height: 391px;
+  text-align: center;
+  font-size: 16px;
+  padding-top: 20px;
+}
+.garbage img {
+  margin-top: 50px;
+  width: 100%;
+}
+.mes {
+  width: 100px;
+  line-height: 18px;
+  font-size: 12px;
+  background-color: #555;
+  color: #fff;
 }
